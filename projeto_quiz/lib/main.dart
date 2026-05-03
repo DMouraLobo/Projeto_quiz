@@ -15,15 +15,6 @@ class PerguntaApp extends StatefulWidget {
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var perguntaSelecionada = 0;
-
-  void responder(){
-    setState(() {
-      perguntaSelecionada++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context){
     final perguntas = [
       {
         'pergunta': 'Qual é a sua cor favorita?',
@@ -39,7 +30,24 @@ class _PerguntaAppState extends State<PerguntaApp> {
       },
     ];
 
-    List<String> respostas = perguntas[perguntaSelecionada].cast()['respostas'];
+  void responder(){
+    if (temPerguntaSelecionada) {
+      setState(() {
+        perguntaSelecionada++;
+      });
+    }
+  }
+
+  bool get temPerguntaSelecionada {
+    return perguntaSelecionada < perguntas.length;
+  }
+
+  @override
+  Widget build(BuildContext context){
+
+    List<String> respostas = temPerguntaSelecionada
+    ? perguntas[perguntaSelecionada].cast()['respostas']
+    :[];
     List<Widget> widgets = respostas.map((t)=>Resposta(t, responder)).toList();
     return MaterialApp(
       home: Scaffold(
@@ -48,12 +56,12 @@ class _PerguntaAppState extends State<PerguntaApp> {
           centerTitle: true,
           backgroundColor: Color.fromARGB(120,0,0,255),
         ),
-        body: Column(
+        body: temPerguntaSelecionada ? Column(
           children: [
             Questao(perguntas[perguntaSelecionada]['pergunta'].toString()),
             ...widgets,
           ],
-        ),
+        ) : null,
       ),
     );
   }
