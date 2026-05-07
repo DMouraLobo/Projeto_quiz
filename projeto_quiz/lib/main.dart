@@ -61,7 +61,14 @@ class _PerguntaAppState extends State<PerguntaApp> {
             Questao(perguntas[perguntaSelecionada]['pergunta'].toString()),
             ...widgets,
           ],
-        ) : null,
+        ) : Center(
+          child: Text('Parabéns!' ,
+          style: TextStyle(
+            fontSize: 25,
+            color: Colors.blue
+          ),
+          ),
+          ),
       ),
     );
   }
