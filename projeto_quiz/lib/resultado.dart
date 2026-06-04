@@ -23,10 +23,16 @@ class Resultado extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Center(
-          child: Text(fraseResultado,
-            style: TextStyle(fontSize: 25, color: Colors.blue),
-          ),
+        Column(
+          children: [
+            Image.asset('assets/images/logo.png', width: 300,),
+            SizedBox(height: 40),
+            Center(
+              child: Text(fraseResultado,
+                style: TextStyle(fontSize: 25, color: Colors.blue),
+              ),
+            ),
+          ],
         ),
         TextButton(
           onPressed: quandoReiniciar,

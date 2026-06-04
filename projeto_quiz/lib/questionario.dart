@@ -26,7 +26,8 @@ class Questionario extends StatelessWidget{
     
     return Column(
           children: [
-            Questao(perguntas[perguntaSelecionada]['pergunta'].toString()),
+            Questao(perguntas[perguntaSelecionada]['pergunta'].toString(),
+            perguntas[perguntaSelecionada]['imagem'].toString()),
             ...respostas.map((resp) => Resposta(resp['texto'] as String,()=> responder(int.parse(resp['nota'].toString())))),
           ],
         );

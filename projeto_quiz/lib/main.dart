@@ -19,6 +19,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
   final perguntas = const[
     {
       'pergunta': 'Qual é a sua cor favorita?',
+      'imagem': 'assets/images/logo.png',
       'respostas': [
         {'texto': 'Preto', 'nota': 10},
         {'texto': 'Vermelho', 'nota': 5},
@@ -28,6 +29,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
     },
     {
       'pergunta': 'Qual é o seu animal favorito?',
+      'imagem': 'assets/images/logo.png',
       'respostas': [
         {'texto': 'Coelho', 'nota': 10},
         {'texto': 'Tartaruga', 'nota': 5},
@@ -37,6 +39,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
     },
     {
       'pergunta': 'Qual é o seu alimento favorito?',
+      'imagem': 'assets/images/logo.png',
       'respostas': [
         {'texto': 'Massas', 'nota': 10},
         {'texto': 'Carnes', 'nota': 5},
@@ -70,6 +73,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
   Widget build(BuildContext context){
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text('Perguntas'),
