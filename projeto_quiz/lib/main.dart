@@ -15,25 +15,42 @@ class PerguntaApp extends StatefulWidget {
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var perguntaSelecionada = 0;
-    final perguntas = [
-      {
-        'pergunta': 'Qual é a sua cor favorita?',
-        'respostas': ['Preto','Vermelho','Verde','Branco']
-      },
-      {
-        'pergunta': 'Qual é o seu animal favorito?',
-        'respostas': ['Coelho','Tartaruga','Elefante','Leão']
-      },
-      {
-        'pergunta': 'Qual é o seu alimento favorito?',
-        'respostas': ['Massas','Carnes','Grãos','Vegetais']
-      },
-    ];
+  var nota_total = 0;
+  final perguntas = const[
+    {
+      'pergunta': 'Qual é a sua cor favorita?',
+      'respostas': [
+        {'texto': 'Preto', 'nota': 10},
+        {'texto': 'Vermelho', 'nota': 5},
+        {'texto': 'Verde', 'nota': 3},
+        {'texto': 'Branco', 'nota': 1},
+      ],
+    },
+    {
+      'pergunta': 'Qual é o seu animal favorito?',
+      'respostas': [
+        {'texto': 'Coelho', 'nota': 10},
+        {'texto': 'Tartaruga', 'nota': 5},
+        {'texto': 'Elefante', 'nota': 3},
+        {'texto': 'Leão', 'nota': 1},
+      ],
+    },
+    {
+      'pergunta': 'Qual é o seu alimento favorito?',
+      'respostas': [
+        {'texto': 'Massas', 'nota': 10},
+        {'texto': 'Carnes', 'nota': 5},
+        {'texto': 'Grãos', 'nota': 3},
+        {'texto': 'Vegetais', 'nota': 1},
+      ],
+    },
+  ];
 
-  void responder(){
+  void responder(int nota){
     if (temPerguntaSelecionada) {
       setState(() {
         perguntaSelecionada++;
+        nota_total += nota;
       });
     }
   }
@@ -56,7 +73,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
         ? Questionario(perguntaSelecionada: perguntaSelecionada,
         perguntas: perguntas,
         responder: responder)
-        : Resultado(),
+        : Resultado(nota_total),
       ),
     );
   }
