@@ -25,33 +25,63 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   final perguntas = const[
     {
-      'pergunta': 'Qual é a sua cor favorita?',
+      'pergunta': 'Qual é a função obrigatória que serve como ponto de entrada para iniciar qualquer aplicativo Dart?',
       'imagem': 'assets/images/logo.png',
       'respostas': [
-        {'texto': 'Preto', 'nota': 0},
-        {'texto': 'Vermelho', 'nota': 0},
-        {'texto': 'Verde', 'nota': 0},
-        {'texto': 'Branco', 'nota': 1},
+        {'texto': 'void start()', 'nota': 0},
+        {'texto': 'void main()', 'nota': 1}, 
+        {'texto': 'void run()', 'nota': 0},
+        {'texto': 'void init()', 'nota': 0},
       ],
     },
     {
-      'pergunta': 'Qual é o seu animal favorito?',
+      'pergunta': 'No Dart, qual recurso/símbolo é utilizado junto ao tipo da variável para permitir que ela receba um valor nulo (Null Safety)?',
       'imagem': 'assets/images/logo.png',
       'respostas': [
-        {'texto': 'Coelho', 'nota': 0},
-        {'texto': 'Tartaruga', 'nota': 0},
-        {'texto': 'Elefante', 'nota': 0},
-        {'texto': 'Leão', 'nota': 1},
+        {'texto': 'O ponto de exclamação (!)', 'nota': 0},
+        {'texto': 'O underline (_)', 'nota': 0},
+        {'texto': 'O ponto de interrogação (?)', 'nota': 1},
+        {'texto': 'A palavra-chave void', 'nota': 0},
       ],
     },
     {
-      'pergunta': 'Qual é o seu alimento favorito?',
+      'pergunta': 'Qual palavra-chave é utilizada para fazer com que uma classe herde os métodos e atributos de uma "classe pai" (superclasse)?',
       'imagem': 'assets/images/logo.png',
       'respostas': [
-        {'texto': 'Massas', 'nota': 0},
-        {'texto': 'Carnes', 'nota': 0},
-        {'texto': 'Grãos', 'nota': 0},
-        {'texto': 'Vegetais', 'nota': 1},
+        {'texto': 'implements', 'nota': 0},
+        {'texto': 'extends', 'nota': 1},
+        {'texto': 'with', 'nota': 0},
+        {'texto': 'import', 'nota': 0},
+      ],
+    },
+    {
+      'pergunta': 'Como indicamos no Dart que uma variável ou função deve ser privada e visível apenas dentro do arquivo onde foi criada?',
+      'imagem': 'assets/images/logo.png',
+      'respostas': [
+        {'texto': 'Usando a palavra "private"', 'nota': 0},
+        {'texto': 'Usando a anotação @private', 'nota': 0},
+        {'texto': 'Declarando a variável como "final"', 'nota': 0},
+        {'texto': 'Iniciando o nome com underline (_)', 'nota': 1}, 
+      ],
+    },
+    {
+      'pergunta': 'No Flutter, qual é o tipo de Widget utilizado quando a interface precisa se atualizar dinamicamente enquanto o usuário interage com o app?',
+      'imagem': 'assets/images/logo.png',
+      'respostas': [
+        {'texto': 'StatelessWidget', 'nota': 0},
+        {'texto': 'StatefulWidget', 'nota': 1}, 
+        {'texto': 'InheritedWidget', 'nota': 0},
+        {'texto': 'MaterialWidget', 'nota': 0},
+      ],
+    },
+    {
+      'pergunta': 'Qual método é chamado dentro do código para avisar ao Flutter que uma variável mudou e que ele precisa redesenhar a tela com o novo valor?',
+      'imagem': 'assets/images/logo.png',
+      'respostas': [
+        {'texto': 'Iniciando o nome com underline (_)', 'nota': 1}, 
+        {'texto': 'updateScreen()', 'nota': 0},
+        {'texto': 'build()', 'nota': 0},
+        {'texto': 'refresh()', 'nota': 0},
       ],
     },
   ];

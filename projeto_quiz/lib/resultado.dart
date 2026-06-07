@@ -7,11 +7,11 @@ class Resultado extends StatelessWidget {
   Resultado(this.nota, this.quandoReiniciar);
 
   String get fraseResultado{
-    if(nota < 1){
+    if(nota < 2){
       return 'Pode melhorar!';
-    } else if(nota < 2){
+    } else if(nota < 4){
       return 'Bom!';
-    } else if(nota < 3){
+    } else if(nota < 6){
       return 'Ótimo!';
     } else {
       return 'Excelente!';
@@ -33,7 +33,7 @@ class Resultado extends StatelessWidget {
               ),
             ),
             Text(
-              'Você acertou $nota de 3',
+              'Você acertou $nota de 6',
               style: TextStyle(fontSize: 20),
             ),
           ],
