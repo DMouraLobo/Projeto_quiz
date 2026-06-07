@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:projeto_quiz/questionario.dart';
 import 'package:projeto_quiz/resultado.dart';
+import 'package:projeto_quiz/telaInicial.dart';
 
 void main() => runApp(PerguntaApp());
 
@@ -16,6 +17,8 @@ class PerguntaApp extends StatefulWidget {
 class _PerguntaAppState extends State<PerguntaApp> {
   var perguntaSelecionada = 0;
   var nota_total = 0;
+
+  bool _jogoIniciado = false;
 
   int _tempoRestante = 30;
   Timer? _timer;
@@ -53,16 +56,22 @@ class _PerguntaAppState extends State<PerguntaApp> {
     },
   ];
 
-@override
+  @override
   void initState() {
     super.initState();
-    _iniciarTimer();
   }
 
-@override
+  @override
   void dispose() {
     _timer?.cancel();
     super.dispose();
+  }
+
+  void _iniciarJogo() {
+    setState(() {
+      _jogoIniciado = true;
+    });
+    _iniciarTimer();
   }
 
   void _iniciarTimer() {
@@ -98,8 +107,8 @@ class _PerguntaAppState extends State<PerguntaApp> {
     setState(() {
       perguntaSelecionada = 0;
       nota_total = 0;
+      _jogoIniciado = false;
     });
-    _iniciarTimer();
   }
 
   bool get temPerguntaSelecionada {
@@ -116,31 +125,34 @@ class _PerguntaAppState extends State<PerguntaApp> {
           centerTitle: true,
           backgroundColor: Color.fromARGB(120,0,0,255),
         ),
-        body: temPerguntaSelecionada
-        ? Column(
-          children: [
-            Container(
-              padding: EdgeInsets.all(15),
-              child: Text(
-                'Tempo: $_tempoRestante s',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: _tempoRestante <= 10 ? Colors.red : Colors.black,
+
+        body: !_jogoIniciado
+          ? TelaInicial(_iniciarJogo) 
+          : temPerguntaSelecionada
+          ? Column(
+            children: [
+              Container(
+                padding: EdgeInsets.all(15),
+                child: Text(
+                  'Tempo: $_tempoRestante s',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: _tempoRestante <= 10 ? Colors.red : Colors.black,
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Questionario(
-                  perguntaSelecionada: perguntaSelecionada,
-                  perguntas: perguntas,
-                  responder: responder
-                ),
-              ),  
-            ),
-          ],
-        )
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Questionario(
+                    perguntaSelecionada: perguntaSelecionada,
+                    perguntas: perguntas,
+                    responder: responder
+                  ),
+                ),  
+              ),
+            ],
+          )
         : Resultado(nota_total,reiniciarQuestionario),
       ),
     );
