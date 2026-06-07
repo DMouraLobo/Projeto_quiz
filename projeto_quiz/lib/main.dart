@@ -19,9 +19,11 @@ class _PerguntaAppState extends State<PerguntaApp> {
   var nota_total = 0;
 
   bool _jogoIniciado = false;
-
   int _tempoRestante = 30;
   Timer? _timer;
+
+  bool _mostrandoGabarito = false;
+  int? _indiceEscolhido;
 
   final perguntas = const[
     {
@@ -113,19 +115,26 @@ class _PerguntaAppState extends State<PerguntaApp> {
         });
       } else {
         _timer?.cancel();
-        responder(0);
+        responder(0, null);
       }
     });
   }
 
-  void responder(int nota){
+  void responder(int nota, int? indiceClicado) async {
+    if (_mostrandoGabarito) return;
+    _timer?.cancel();
+    setState(() {
+      _mostrandoGabarito = true;
+      _indiceEscolhido = indiceClicado;
+    });
+    await Future.delayed(Duration(milliseconds: 1500));
     if (temPerguntaSelecionada) {
       setState(() {
         perguntaSelecionada++;
         nota_total += nota;
+        _mostrandoGabarito = false;
+        _indiceEscolhido = null;
       });
-
-      _timer?.cancel();
 
       if (temPerguntaSelecionada) {
         _iniciarTimer();
@@ -161,6 +170,12 @@ class _PerguntaAppState extends State<PerguntaApp> {
           : temPerguntaSelecionada
           ? Column(
             children: [
+              LinearProgressIndicator(
+                value: _tempoRestante / 30,
+                minHeight: 12,
+                backgroundColor: Colors.grey[300],
+                color: _tempoRestante <= 10 ? Colors.red : Colors.green,
+              ),
               Container(
                 padding: EdgeInsets.all(15),
                 child: Text(
@@ -177,7 +192,9 @@ class _PerguntaAppState extends State<PerguntaApp> {
                   child: Questionario(
                     perguntaSelecionada: perguntaSelecionada,
                     perguntas: perguntas,
-                    responder: responder
+                    responder: responder,
+                    mostrandoGabarito: _mostrandoGabarito,
+                    indiceEscolhido: _indiceEscolhido,
                   ),
                 ),  
               ),
