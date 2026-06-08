@@ -80,7 +80,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
       'pergunta': 'Qual método é chamado dentro do código para avisar ao Flutter que uma variável mudou e que ele precisa redesenhar a tela com o novo valor?',
       'imagem': 'assets/images/logo.png',
       'respostas': [
-        {'texto': 'Iniciando o nome com underline (_)', 'nota': 1}, 
+        {'texto': 'setState()', 'nota': 1}, 
         {'texto': 'updateScreen()', 'nota': 0},
         {'texto': 'build()', 'nota': 0},
         {'texto': 'refresh()', 'nota': 0},
